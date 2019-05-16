@@ -4,7 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "build-android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
+    "android": "node node_modules/react-native/local-cli/cli.js run-android && adb reverse tcp:8081 tcp:8081",
+    "ios-release": "node node_modules/react-native/local-cli/cli.js run-ios --variant=release",
+    "android-release": "node node_modules/react-native/local-cli/cli.js run-android --variant=release && adb reverse tcp:8081 tcp:8081",
+    "shake-android": "adb shell input keyevent 82"
   },
   "dependencies": {
     "react": "16.8.3",
