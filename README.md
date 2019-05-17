@@ -6,6 +6,8 @@ React Native implementation of the Order-assignment.
 
 ## launch the iOS simulator
 
+For iOS you need to have Xcode and an iOS simulator installed. Otherwise the script wont be able to launch a simulator.
+
 There are yarn scripts available for quickly launching the application. For starting the simulator and the application, simply run:
 
 ```
