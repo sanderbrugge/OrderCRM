@@ -45,7 +45,7 @@ const Header: React.FC<IProps> = ({
     extrapolate: "clamp"
   });
 
-  const profileImageMarginTop = scrollY.interpolate({
+  const titleContainerTop = scrollY.interpolate({
     inputRange: [0, TITLE_MAX_HEIGHT],
     outputRange: [TITLE_MAX_HEIGHT, TITLE_MAX_HEIGHT + 5],
     extrapolate: "clamp"
@@ -137,7 +137,7 @@ const Header: React.FC<IProps> = ({
           style={[
             HeaderStyles.contentTitleContainer,
             {
-              marginTop: profileImageMarginTop,
+              marginTop: titleContainerTop,
               opacity: bottomTitleOpacity,
               flex: 1,
               flexDirection: "row"
