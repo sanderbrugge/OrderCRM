@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Home from "./src/scenes/Home";
+import AppContainer from "./src/Routes";
 
 interface Props {}
 
 export default class App extends Component<Props> {
   render() {
-    return <Home />;
+    return <AppContainer />;
   }
 }
