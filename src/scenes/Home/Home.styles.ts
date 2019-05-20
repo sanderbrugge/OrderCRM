@@ -3,7 +3,6 @@ import { colors } from "../../styles/base";
 
 const HomeStyles = StyleSheet.create({
   container: {
-    height: 1000,
     flex: 1,
     backgroundColor: colors.white
   },
