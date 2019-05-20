@@ -31,7 +31,8 @@ const Home: React.FC<IHomeProps> = ({ orders, fetchOrders }) => {
 
   return (
     <View style={HomeStyles.container}>
-      {isFetching && <ActivityIndicator size="large" color={colors.blue} />}
+      {isFetching && <ActivityIndicator size="large" color={colors.grey} />}
+
       {hasData && (
         <FlatList
           data={orders.data}
@@ -39,11 +40,8 @@ const Home: React.FC<IHomeProps> = ({ orders, fetchOrders }) => {
           keyExtractor={order => order.id}
         />
       )}
-      {error && (
-        <View style={{ flex: 1 }}>
-          <Error message={orders.error!.message} />
-        </View>
-      )}
+
+      {error && <Error message={orders.error!.message} />}
     </View>
   );
 };
@@ -55,7 +53,7 @@ interface IProps {
 
 const HomeWrapper: React.FC<IProps> = ({ orders, fetchOrders }) => (
   <Header
-    title="Your Orders"
+    title="All Orders"
     canNavigateBack={false}
     childView={<Home orders={orders} fetchOrders={fetchOrders} />}
   />
