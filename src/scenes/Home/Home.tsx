@@ -1,28 +1,28 @@
 import * as React from "react";
 import { FlatList, Text, View } from "react-native";
-import { fetchOrders } from "../../api/order.services";
-import { Order } from "../../api/order";
 import HomeStyles from "./Home.styles";
 import Header from "../../components/Header";
+import { connect } from "react-redux";
+import { Store } from "../../ducks";
+import {
+  actions as orderActions,
+  AsyncOrders
+} from "../../ducks/order.reducer";
 
-const Home: React.FC = () => {
-  const [orders, setOrders] = React.useState<Order[]>([]);
+interface IHomeProps {
+  orders: AsyncOrders;
+  fetchOrders: () => void;
+}
+
+const Home: React.FC<IHomeProps> = ({ orders, fetchOrders }) => {
   React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchOrders();
-        setOrders(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
+    fetchOrders();
   }, []);
 
   return (
     <View style={HomeStyles.container}>
       <FlatList
-        data={orders}
+        data={orders.orders}
         renderItem={({ item }) => (
           <Text key={item.id} style={HomeStyles.row}>
             {item.total}
@@ -34,8 +34,28 @@ const Home: React.FC = () => {
   );
 };
 
-const HomeWrapper: React.FC = () => (
-  <Header title="Your Orders" canNavigateBack={false} childView={<Home />} />
+interface IProps {
+  orders: AsyncOrders;
+  fetchOrders: () => void;
+}
+
+const HomeWrapper: React.FC<IProps> = ({ orders, fetchOrders }) => (
+  <Header
+    title="Your Orders"
+    canNavigateBack={false}
+    childView={<Home orders={orders} fetchOrders={fetchOrders} />}
+  />
 );
 
-export default HomeWrapper;
+const mapStateToProps = (state: Store) => ({
+  orders: state.orders
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  fetchOrders: () => dispatch(orderActions.fetchOrders())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeWrapper);
