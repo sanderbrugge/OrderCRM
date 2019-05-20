@@ -36,9 +36,7 @@ const Header: React.FC<IProps> = ({
   childView,
   navigation
 }) => {
-  const [scrollY, setScrollY] = React.useState<Animated.Value>(
-    new Animated.Value(0)
-  );
+  const [scrollY] = React.useState<Animated.Value>(new Animated.Value(0));
   const headerHeight = scrollY.interpolate({
     inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
     outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
