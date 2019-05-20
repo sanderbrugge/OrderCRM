@@ -5,7 +5,7 @@ const HomeStyles = StyleSheet.create({
   container: {
     height: 1000,
     flex: 1,
-    backgroundColor: colors.grey
+    backgroundColor: colors.white
   },
   row: {
     padding: 10,

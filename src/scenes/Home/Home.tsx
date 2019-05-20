@@ -17,7 +17,7 @@ const Home: React.FC = () => {
 
   return (
     <Header
-      title="Home"
+      title="Your Orders"
       canNavigateBack={false}
       childView={
         <SafeAreaView style={HomeStyles.container}>
