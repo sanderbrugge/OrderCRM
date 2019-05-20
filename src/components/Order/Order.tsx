@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Order } from "../../api/order";
+import { Order } from "../../api/Order/order";
 import { View, Text, TouchableOpacity } from "react-native";
 import FontAwesome, { Icons } from "react-native-fontawesome";
 import { OrderStyles } from "./Order.styles";
