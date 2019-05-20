@@ -2,8 +2,8 @@ import data from "./data.json";
 import { Order } from "./order";
 
 const APIError = {
-  status: "404",
-  message: "Page not found"
+  status: "500",
+  message: "An error has occured"
 };
 
 /**

@@ -14,13 +14,16 @@ export const SUCCESS = "SUCCESS";
 export const FAILURE = "FAILURE";
 
 export interface AsyncOrders {
-  orders: Order[];
+  data: Order[];
   status: "UNSENT" | "PENDING" | "SUCCESS" | "FAILURE";
-  error?: string;
+  error?: {
+    status: number;
+    message: string;
+  };
 }
 
 const initialState: AsyncOrders = {
-  orders: [],
+  data: [],
   status: UNSENT,
   error: undefined
 };
@@ -38,21 +41,21 @@ const orderReducer: Reducer<AsyncOrders, any> = (
   switch (action.type) {
     case types.FETCH_ORDER_REQUEST: {
       return {
-        orders: [],
+        data: [],
         status: PENDING,
         error: undefined
       };
     }
     case types.FETCH_ORDER_SUCCESS: {
       return {
-        orders: action.payload,
+        data: action.payload,
         status: SUCCESS,
         error: undefined
       };
     }
     case types.FETCH_ORDER_FAILURE: {
       return {
-        orders: [],
+        data: [],
         status: FAILURE,
         error: action.payload
       };

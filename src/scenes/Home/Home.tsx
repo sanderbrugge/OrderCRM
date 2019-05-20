@@ -1,13 +1,17 @@
 import * as React from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Text, View, ActivityIndicator } from "react-native";
 import HomeStyles from "./Home.styles";
 import Header from "../../components/Header";
 import { connect } from "react-redux";
 import { Store } from "../../ducks";
 import {
   actions as orderActions,
-  AsyncOrders
+  AsyncOrders,
+  PENDING,
+  SUCCESS,
+  FAILURE
 } from "../../ducks/order.reducer";
+import { colors } from "../../styles/base";
 
 interface IHomeProps {
   orders: AsyncOrders;
@@ -19,17 +23,25 @@ const Home: React.FC<IHomeProps> = ({ orders, fetchOrders }) => {
     fetchOrders();
   }, []);
 
+  const isFetching = orders.status === PENDING;
+  const hasData = orders.status === SUCCESS && orders.data;
+  const error = orders.status === FAILURE;
+
   return (
     <View style={HomeStyles.container}>
-      <FlatList
-        data={orders.orders}
-        renderItem={({ item }) => (
-          <Text key={item.id} style={HomeStyles.row}>
-            {item.total}
-          </Text>
-        )}
-        keyExtractor={order => order.id}
-      />
+      {isFetching && <ActivityIndicator size="large" color={colors.blue} />}
+      {hasData && (
+        <FlatList
+          data={orders.data}
+          renderItem={({ item }) => (
+            <Text key={item.id} style={HomeStyles.row}>
+              {item.total}
+            </Text>
+          )}
+          keyExtractor={order => order.id}
+        />
+      )}
+      {error && <Text>{orders.error!.message}</Text>}
     </View>
   );
 };
