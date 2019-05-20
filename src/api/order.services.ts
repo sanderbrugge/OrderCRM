@@ -1,4 +1,4 @@
-import data from "./data.json";
+import data from "./orders.json";
 import { Order } from "./order";
 
 const APIError = {
