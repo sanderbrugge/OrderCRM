@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FlatList, Text, View, ActivityIndicator } from "react-native";
+import { FlatList, View, ActivityIndicator } from "react-native";
 import HomeStyles from "./Home.styles";
 import Header from "../../components/Header";
 import { connect } from "react-redux";
@@ -12,7 +12,8 @@ import {
   FAILURE
 } from "../../ducks/order.reducer";
 import { colors } from "../../styles/base";
-import OrderRow from "../../components/Order/Order";
+import OrderRow from "../../components/Order";
+import Error from "../../components/Error";
 
 interface IHomeProps {
   orders: AsyncOrders;
@@ -30,7 +31,8 @@ const Home: React.FC<IHomeProps> = ({ orders, fetchOrders }) => {
 
   return (
     <View style={HomeStyles.container}>
-      {isFetching && <ActivityIndicator size="large" color={colors.blue} />}
+      {isFetching && <ActivityIndicator size="large" color={colors.grey} />}
+
       {hasData && (
         <FlatList
           data={orders.data}
@@ -38,7 +40,8 @@ const Home: React.FC<IHomeProps> = ({ orders, fetchOrders }) => {
           keyExtractor={order => order.id}
         />
       )}
-      {error && <Text>{orders.error!.message}</Text>}
+
+      {error && <Error message={orders.error!.message} />}
     </View>
   );
 };
@@ -50,7 +53,7 @@ interface IProps {
 
 const HomeWrapper: React.FC<IProps> = ({ orders, fetchOrders }) => (
   <Header
-    title="Your Orders"
+    title="All Orders"
     canNavigateBack={false}
     childView={<Home orders={orders} fetchOrders={fetchOrders} />}
   />
