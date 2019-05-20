@@ -15,7 +15,8 @@ const OrderRow: React.FC<IProps> = ({ order }) => {
         flex: 1,
         borderBottomWidth: 1,
         borderBottomColor: colors.grey,
-        flexDirection: "row"
+        flexDirection: "row",
+        marginBottom: 10
       }}
     >
       <View
@@ -32,18 +33,44 @@ const OrderRow: React.FC<IProps> = ({ order }) => {
       >
         <FontAwesome
           style={{
-            color: colors.black,
-            fontSize: 25
+            color: colors.white,
+            fontSize: 30
           }}
         >
           {Icons.shoppingCart}
         </FontAwesome>
+        <View
+          style={{
+            flex: 1,
+            position: "absolute",
+            top: 12,
+            right: 8,
+            width: 20,
+            height: 20,
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 20,
+            zIndex: 999,
+            backgroundColor: colors.green
+          }}
+        >
+          <Text style={{ color: colors.white }}>{order.items.length}</Text>
+        </View>
       </View>
-      <View style={{ flex: 1, margin: 10 }}>
-        <Text>Order id: {order.id}</Text>
-        <Text>Customer id: {order["customer-id"]}</Text>
-        <Text>#items in cart: {order.items.length}</Text>
-        <Text>Price: ${order.total}</Text>
+      <View style={{ flex: 1, margin: 8 }}>
+        <Text style={{ flex: 1 }}>Order id: {order.id}</Text>
+        <Text style={{ flex: 1 }}>Customer id: {order["customer-id"]}</Text>
+        <Text
+          style={{
+            flex: 1,
+            color: colors.green,
+            fontSize: 15,
+            fontWeight: "500",
+            alignSelf: "flex-end"
+          }}
+        >
+          ${order.total}
+        </Text>
       </View>
     </View>
   );
