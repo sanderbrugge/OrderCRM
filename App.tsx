@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import AppContainer from "./src/Routes";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import store from "./src/ducks";
 
 interface Props {}
 
 export default class App extends Component<Props> {
   render() {
-    return <AppContainer />;
+    return (
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    );
   }
 }
