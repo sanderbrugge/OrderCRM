@@ -1,6 +1,6 @@
-import { fetchOrders } from "../api/order.services";
+import { fetchOrders } from "../api/Order/order.services";
 import { createAsyncAction } from "../util/async-redux";
-import { Order } from "../api/order";
+import { Order } from "../api/Order/order";
 import { Reducer } from "redux";
 
 export interface Action {

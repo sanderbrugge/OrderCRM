@@ -43,12 +43,23 @@ export const OrderStyles = StyleSheet.create({
     flex: 1,
     margin: 8
   },
-  detailText: { flex: 1 },
+  customerDetailText: {
+    flex: 1,
+    fontWeight: "500",
+    fontSize: 18,
+    marginBottom: 5
+  },
+  orderDetailText: {
+    flex: 1,
+    fontWeight: "300",
+    color: colors.grey,
+    fontSize: 14
+  },
   detailTextPrice: {
     flex: 1,
     color: colors.green,
     fontSize: 15,
-    fontWeight: "500",
+    fontWeight: "600",
     alignSelf: "flex-end"
   }
 });

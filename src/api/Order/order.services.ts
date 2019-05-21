@@ -1,7 +1,7 @@
 import data from "./orders.json";
 import { Order } from "./order";
 
-const APIError = {
+export const APIError = {
   status: "500",
   message: "An error has occured"
 };
@@ -9,6 +9,8 @@ const APIError = {
 /**
  * Fake api call that takes a second to complete, returns a promise containing the order data.
  * Uncomment the rejected promise to see the error handling in action.
+ *
+ * Fetch all of the orders.
  */
 export function fetchOrders(): Promise<Order[]> {
   return new Promise(resolve => setTimeout(() => resolve(data), 1000));
