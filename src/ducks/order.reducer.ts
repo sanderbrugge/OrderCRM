@@ -1,6 +1,6 @@
 import { fetchOrders } from "../api/Order/order.services";
 import { createAsyncAction } from "../util/async-redux";
-import { Order } from "../api/Order/order";
+import { Order, Item } from "../api/Order/order";
 import { Reducer } from "redux";
 import {
   Action,
@@ -10,7 +10,6 @@ import {
   FAILURE,
   AsyncResource
 } from "./redux.types";
-import { Product } from "../api/Product/product";
 
 export interface AsyncOrders extends AsyncResource {
   data: Order[];
@@ -57,24 +56,20 @@ const orderReducer: Reducer<AsyncOrders, any> = (
       };
     }
     case types.ADD_PRODUCT_TO_ORDER: {
-      console.log("dispatching add product");
-
+      console.log(action.payload.product);
       const newState = {
         ...state,
         data: state.data.map(order => {
-          console.log(action.payload.orderId);
           if (order.id === action.payload.orderId) {
             return {
               ...order,
-              items: [...order.items, action.payload.product]
+              items: [...order.items, action.payload.item]
             };
           }
 
           return order;
         })
       };
-
-      console.log(newState);
 
       return newState;
     }
@@ -91,9 +86,9 @@ export const actions = {
       successType: types.FETCH_ORDER_SUCCESS,
       failureType: types.FETCH_ORDER_FAILURE
     }),
-  addProduct: (orderId: string, product: Product) => ({
+  addProduct: (orderId: string, item: Item) => ({
     type: types.ADD_PRODUCT_TO_ORDER,
-    payload: { orderId, product }
+    payload: { orderId, item }
   })
 };
 

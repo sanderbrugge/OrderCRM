@@ -10,13 +10,13 @@ import { PENDING, SUCCESS, FAILURE, UNSENT } from "../../ducks/redux.types";
 import { colors } from "../../styles/base";
 import Error from "../../components/Error";
 import ProductItem from "../../components/Product";
-import { Product } from "../../api/Product/product";
 import { actions as orderActions } from "../../ducks/order.reducer";
+import { Item } from "../../api/Order/order";
 
 interface IProps {
   products: AsyncProducts;
   orderId: string;
-  addProduct: (orderId: string, product: Product) => void;
+  addProduct: (orderId: string, item: Item) => void;
   fetchProducts: () => void;
 }
 
@@ -67,8 +67,8 @@ const mapStateToProps = (state: Store) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   fetchProducts: () => dispatch(productActions.fetchProducts()),
-  addProduct: (orderId: string, product: Product) =>
-    dispatch(orderActions.addProduct(orderId, product))
+  addProduct: (orderId: string, item: Item) =>
+    dispatch(orderActions.addProduct(orderId, item))
 });
 
 export default connect(

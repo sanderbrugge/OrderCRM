@@ -27,6 +27,8 @@ const Home: React.FC<IHomeProps> = ({ orders, fetchOrders }) => {
   const hasData = orders.status === SUCCESS && orders.data;
   const error = orders.status === FAILURE;
 
+  console.log(orders);
+
   return (
     <View style={HomeStyles.container}>
       {isFetching && <ActivityIndicator size="large" color={colors.grey} />}

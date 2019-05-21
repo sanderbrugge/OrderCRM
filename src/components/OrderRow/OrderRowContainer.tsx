@@ -23,13 +23,19 @@ const OrderRowContainer: React.FC<IProps> = ({ order, navigation }) => {
     () => navigation.navigate("OrderDetail", { order }),
     [order]
   );
+
   const [customer, setCustomer] = React.useState<Customer | undefined>(
     undefined
   );
+
   const customerName = React.useMemo(
     () => (customer ? customer.name : `Customer id: ${order["customer-id"]}`),
     [customer]
   );
+
+  React.useEffect(() => {
+    navigation.setParams({ order });
+  }, [order]);
 
   // Decided against putting this in Redux as this is not something that needs to be globally available.
   React.useEffect(() => {
