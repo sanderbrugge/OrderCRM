@@ -8,6 +8,7 @@ import { Icons } from "react-native-fontawesome";
 import { colors } from "../../styles/base";
 import ItemContainer from "../../components/Item";
 import OrderDetailStyles from "./OrderDetail.styles";
+import HeaderBarButton from "../../components/HeaderBarButton/HeaderBarButton";
 
 interface IProps extends NavigationInjectedProps<NavigationParams> {}
 
@@ -18,6 +19,12 @@ const OrderDetail: React.FC<IProps> = ({ navigation }) => {
       <Header
         title="Order Overview"
         canNavigateBack
+        rightBarButton={
+          <HeaderBarButton
+            icon={Icons.plus}
+            onPress={() => console.log("add item")}
+          />
+        }
         childView={
           <>
             <View style={OrderDetailStyles.itemContainer}>
