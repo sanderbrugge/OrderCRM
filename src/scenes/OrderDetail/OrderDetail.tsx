@@ -42,7 +42,6 @@ const OrderDetail: React.FC<IProps> = ({ navigation }) => {
                 rbSheet.current = ref;
               }}
               height={400}
-              closeOnSwipeDown
               duration={250}
               customStyles={{
                 container: {
