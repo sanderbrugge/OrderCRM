@@ -17,6 +17,7 @@
     "react-native": "0.59.8",
     "react-native-fontawesome": "6.0.1",
     "react-native-gesture-handler": "1.2.1",
+    "react-native-raw-bottom-sheet": "^1.1.4",
     "react-navigation": "3.9.2",
     "react-redux": "7.0.3",
     "redux": "4.0.1",

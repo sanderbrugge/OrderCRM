@@ -9,11 +9,14 @@ import { colors } from "../../styles/base";
 import ItemContainer from "../../components/Item";
 import OrderDetailStyles from "./OrderDetail.styles";
 import HeaderBarButton from "../../components/HeaderBarButton/HeaderBarButton";
+import RBSheet from "react-native-raw-bottom-sheet";
 
 interface IProps extends NavigationInjectedProps<NavigationParams> {}
 
 const OrderDetail: React.FC<IProps> = ({ navigation }) => {
   const order = navigation.getParam("order", {}) as Order;
+  const rbSheet = React.useRef<RBSheet | null>(null);
+
   return (
     <>
       <Header
@@ -22,7 +25,7 @@ const OrderDetail: React.FC<IProps> = ({ navigation }) => {
         rightBarButton={
           <HeaderBarButton
             icon={Icons.plus}
-            onPress={() => console.log("add item")}
+            onPress={() => rbSheet.current && rbSheet.current.open()}
           />
         }
         childView={
@@ -33,6 +36,21 @@ const OrderDetail: React.FC<IProps> = ({ navigation }) => {
             {order.items.map(item => (
               <ItemContainer key={item["product-id"]} item={item} />
             ))}
+            <RBSheet
+              ref={ref => {
+                rbSheet.current = ref;
+              }}
+              height={300}
+              closeOnSwipeDown
+              duration={250}
+              customStyles={{
+                container: {
+                  borderRadius: 20
+                }
+              }}
+            >
+              <Text>Test</Text>
+            </RBSheet>
           </>
         }
       />
