@@ -1,9 +1,11 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import Home from "./scenes/Home";
+import OrderDetail from "./scenes/OrderDetail/OrderDetail";
 
 const AppNavigator = createStackNavigator(
   {
-    Home: Home
+    Home: Home,
+    OrderDetail: OrderDetail
   },
   {
     initialRouteName: "Home",

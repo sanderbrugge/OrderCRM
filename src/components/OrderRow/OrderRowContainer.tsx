@@ -3,24 +3,32 @@ import { Order } from "../../api/Order/order";
 import { getCustomerById } from "../../api/Customer/customer.services";
 import { Customer } from "../../api/Customer/customer";
 import OrderRow from "./OrderRow";
+import {
+  NavigationInjectedProps,
+  NavigationParams,
+  withNavigation
+} from "react-navigation";
 
-interface IProps {
+interface IProps extends NavigationInjectedProps<NavigationParams> {
   order: Order;
 }
 
 /**
- * Container class handling all the fetching and data transforming
+ * Container class handling all the fetching and data transforming of an Order
  *
  * @param param0 The order to display in this row.
  */
-const OrderRowContainer: React.FC<IProps> = ({ order }) => {
-  const onSelect = React.useCallback(() => console.log(order.id), [order]);
+const OrderRowContainer: React.FC<IProps> = ({ order, navigation }) => {
+  const onSelect = React.useCallback(
+    () => navigation.navigate("OrderDetail", { order }),
+    [order]
+  );
   const [customer, setCustomer] = React.useState<Customer | undefined>(
     undefined
   );
   const customerName = React.useMemo(
     () => (customer ? customer.name : `Customer id: ${order["customer-id"]}`),
-    []
+    [customer]
   );
 
   // Decided against putting this in Redux as this is not something that needs to be globally available.
@@ -44,4 +52,4 @@ const OrderRowContainer: React.FC<IProps> = ({ order }) => {
   );
 };
 
-export default OrderRowContainer;
+export default withNavigation(OrderRowContainer);
