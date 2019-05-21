@@ -49,7 +49,7 @@ const OrderDetail: React.FC<IProps> = ({ navigation }) => {
                 }
               }}
             >
-              <AddProduct />
+              <AddProduct orderId={order.id} />
             </RBSheet>
           </>
         }

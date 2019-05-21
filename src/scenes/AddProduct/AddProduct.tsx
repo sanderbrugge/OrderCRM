@@ -10,18 +10,28 @@ import { PENDING, SUCCESS, FAILURE, UNSENT } from "../../ducks/redux.types";
 import { colors } from "../../styles/base";
 import Error from "../../components/Error";
 import ProductItem from "../../components/Product";
+import { Product } from "../../api/Product/product";
+import { actions as orderActions } from "../../ducks/order.reducer";
 
 interface IProps {
   products: AsyncProducts;
+  orderId: string;
+  addProduct: (orderId: string, product: Product) => void;
   fetchProducts: () => void;
 }
 
-const AddProduct: React.FC<IProps> = ({ products, fetchProducts }) => {
+const AddProduct: React.FC<IProps> = ({
+  products,
+  fetchProducts,
+  orderId,
+  addProduct
+}) => {
   React.useEffect(() => {
     if (products.status === UNSENT) {
       fetchProducts();
     }
   }, []);
+
   const isFetching = products.status === PENDING;
   const hasData = products.status === SUCCESS && products.data;
   const error = products.status === FAILURE;
@@ -34,7 +44,13 @@ const AddProduct: React.FC<IProps> = ({ products, fetchProducts }) => {
         {hasData && (
           <FlatList
             data={products.data}
-            renderItem={({ item }) => <ProductItem product={item} />}
+            renderItem={({ item }) => (
+              <ProductItem
+                product={item}
+                orderId={orderId}
+                orderProduct={addProduct}
+              />
+            )}
             keyExtractor={order => order.id}
           />
         )}
@@ -50,7 +66,9 @@ const mapStateToProps = (state: Store) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  fetchProducts: () => dispatch(productActions.fetchProducts())
+  fetchProducts: () => dispatch(productActions.fetchProducts()),
+  addProduct: (orderId: string, product: Product) =>
+    dispatch(orderActions.addProduct(orderId, product))
 });
 
 export default connect(
