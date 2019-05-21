@@ -24,7 +24,6 @@ function getOrderById(orders: Order[], id: string) {
 }
 
 const OrderDetail: React.FC<IProps> = ({ orders, navigation }) => {
-  console.log("updating");
   const order = React.useMemo(
     () => getOrderById(orders.data, navigation.getParam("id")),
     [orders, navigation]

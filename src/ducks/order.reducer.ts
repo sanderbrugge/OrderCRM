@@ -71,8 +71,6 @@ const orderReducer: Reducer<AsyncOrders, any> = (
               item => item["product-id"] === action.payload.item["product-id"]
             );
 
-            console.log(isItemInOrder);
-
             if (!isItemInOrder) {
               return {
                 ...order,
