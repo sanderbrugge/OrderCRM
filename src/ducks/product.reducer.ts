@@ -1,6 +1,4 @@
-import { fetchOrders } from "../api/Order/order.services";
 import { createAsyncAction } from "../util/async-redux";
-import { Order } from "../api/Order/order";
 import { Reducer } from "redux";
 import {
   Action,
@@ -10,12 +8,14 @@ import {
   FAILURE,
   AsyncResource
 } from "./redux.types";
+import { Product } from "../api/Product/product";
+import { fetchProducts } from "../api/Product/product.services";
 
-export interface AsyncOrders extends AsyncResource {
-  data: Order[];
+export interface AsyncProducts extends AsyncResource {
+  data: Product[];
 }
 
-const initialState: AsyncOrders = {
+const initialState: AsyncProducts = {
   data: [],
   status: UNSENT,
   error: undefined
@@ -27,7 +27,7 @@ export const types = {
   FETCH_ORDER_FAILURE: "ORDER/FETCH_ORDER_FAILURE"
 };
 
-const orderReducer: Reducer<AsyncOrders, any> = (
+const orderReducer: Reducer<AsyncProducts, any> = (
   state = initialState,
   action: Action
 ) => {
@@ -61,7 +61,7 @@ const orderReducer: Reducer<AsyncOrders, any> = (
 export const actions = {
   fetchOrders: () =>
     createAsyncAction({
-      asyncRequest: () => fetchOrders(),
+      asyncRequest: () => fetchProducts(),
       requestType: types.FETCH_ORDER_REQUEST,
       successType: types.FETCH_ORDER_SUCCESS,
       failureType: types.FETCH_ORDER_FAILURE

@@ -6,14 +6,12 @@ import { connect } from "react-redux";
 import { Store } from "../../ducks";
 import {
   actions as orderActions,
-  AsyncOrders,
-  PENDING,
-  SUCCESS,
-  FAILURE
+  AsyncOrders
 } from "../../ducks/order.reducer";
 import { colors } from "../../styles/base";
 import Error from "../../components/Error";
 import OrderRowContainer from "../../components/OrderRow";
+import { PENDING, SUCCESS, FAILURE } from "../../ducks/redux.types";
 
 interface IHomeProps {
   orders: AsyncOrders;

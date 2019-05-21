@@ -10,6 +10,7 @@ import ItemContainer from "../../components/Item";
 import OrderDetailStyles from "./OrderDetail.styles";
 import HeaderBarButton from "../../components/HeaderBarButton/HeaderBarButton";
 import RBSheet from "react-native-raw-bottom-sheet";
+import AddProduct from "../AddProduct/AddProduct";
 
 interface IProps extends NavigationInjectedProps<NavigationParams> {}
 
@@ -49,7 +50,7 @@ const OrderDetail: React.FC<IProps> = ({ navigation }) => {
                 }
               }}
             >
-              <Text>Test</Text>
+              <AddProduct />
             </RBSheet>
           </>
         }
