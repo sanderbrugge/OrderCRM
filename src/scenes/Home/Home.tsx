@@ -28,6 +28,7 @@ const Home: React.FC<IHomeProps> = ({ orders, fetchOrders }) => {
   const error = orders.status === FAILURE;
 
   console.log(orders);
+  console.log("refreshing");
 
   return (
     <View style={HomeStyles.container}>

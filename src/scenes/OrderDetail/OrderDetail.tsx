@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Order } from "../../api/Order/order";
 import { Text, View } from "react-native";
 import { NavigationInjectedProps, NavigationParams } from "react-navigation";
 import Header from "../../components/Header";
@@ -11,11 +10,25 @@ import OrderDetailStyles from "./OrderDetail.styles";
 import HeaderBarButton from "../../components/HeaderBarButton/HeaderBarButton";
 import RBSheet from "react-native-raw-bottom-sheet";
 import AddProduct from "../AddProduct/AddProduct";
+import { connect } from "react-redux";
+import { Store } from "../../ducks";
+import { AsyncOrders } from "../../ducks/order.reducer";
+import { Order } from "../../api/Order/order";
 
-interface IProps extends NavigationInjectedProps<NavigationParams> {}
+interface IProps extends NavigationInjectedProps<NavigationParams> {
+  orders: AsyncOrders;
+}
 
-const OrderDetail: React.FC<IProps> = ({ navigation }) => {
-  const order = navigation.getParam("order", {}) as Order;
+function getOrderById(orders: Order[], id: string) {
+  return orders.find(order => order.id === id);
+}
+
+const OrderDetail: React.FC<IProps> = ({ orders, navigation }) => {
+  console.log("updating");
+  const order = React.useMemo(
+    () => getOrderById(orders.data, navigation.getParam("id")),
+    [orders, navigation]
+  );
   const rbSheet = React.useRef<RBSheet | null>(null);
 
   return (
@@ -32,11 +45,16 @@ const OrderDetail: React.FC<IProps> = ({ navigation }) => {
         childView={
           <>
             <View style={OrderDetailStyles.itemContainer}>
-              <Text style={OrderDetailStyles.total}>TOTAL: ${order.total}</Text>
+              <Text style={OrderDetailStyles.total}>
+                TOTAL: ${order && order.total}
+              </Text>
             </View>
-            {order.items.map(item => (
-              <ItemContainer key={item["product-id"]} item={item} />
-            ))}
+
+            {order &&
+              order.items.map(item => (
+                <ItemContainer key={item["product-id"]} item={item} />
+              ))}
+
             <RBSheet
               ref={ref => {
                 rbSheet.current = ref;
@@ -49,7 +67,7 @@ const OrderDetail: React.FC<IProps> = ({ navigation }) => {
                 }
               }}
             >
-              <AddProduct orderId={order.id} />
+              <AddProduct orderId={order!.id} />
             </RBSheet>
           </>
         }
@@ -66,4 +84,17 @@ const OrderDetail: React.FC<IProps> = ({ navigation }) => {
   );
 };
 
-export default OrderDetail;
+const mapStateToProps = (state: Store) => ({
+  orders: state.orders
+});
+
+/**
+ * I could've added al the orders in the react navigation param as a dependency,
+ * which would exclude this component to connect to Redux.
+ *
+ * But I opted against it because that would cause state management on different places, which is not optimal.
+ */
+export default connect(
+  mapStateToProps,
+  null
+)(OrderDetail);

@@ -20,7 +20,7 @@ interface IProps extends NavigationInjectedProps<NavigationParams> {
  */
 const OrderRowContainer: React.FC<IProps> = ({ order, navigation }) => {
   const onSelect = React.useCallback(
-    () => navigation.navigate("OrderDetail", { order }),
+    () => navigation.navigate("OrderDetail", { id: order.id }),
     [order]
   );
 
@@ -32,10 +32,6 @@ const OrderRowContainer: React.FC<IProps> = ({ order, navigation }) => {
     () => (customer ? customer.name : `Customer id: ${order["customer-id"]}`),
     [customer]
   );
-
-  React.useEffect(() => {
-    navigation.setParams({ order });
-  }, [order]);
 
   // Decided against putting this in Redux as this is not something that needs to be globally available.
   React.useEffect(() => {
