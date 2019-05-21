@@ -1,13 +1,14 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../styles/base";
+import { colors, baseColorWithOpacity } from "../../styles/base";
 
 export const OrderStyles = StyleSheet.create({
   container: {
     flex: 1,
     borderBottomWidth: 1,
-    borderBottomColor: colors.grey,
+    borderBottomColor: baseColorWithOpacity(colors.grey, "30"),
     flexDirection: "row",
-    marginBottom: 10
+    marginBottom: 10,
+    paddingBottom: 5
   },
   thumbnail: {
     alignItems: "center",

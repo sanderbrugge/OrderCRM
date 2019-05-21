@@ -7,6 +7,10 @@ interface IProps {
   item: Item;
 }
 
+/**
+ * Overview of an item
+ * @param param0 the item to display
+ */
 const ItemContainer: React.FC<IProps> = ({ item }) => {
   return (
     <View style={ItemStyles.container}>

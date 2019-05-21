@@ -1,11 +1,14 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../styles/base";
+import { colors, baseColorWithOpacity } from "../../styles/base";
 
 const ItemStyles = StyleSheet.create({
   container: {
     flex: 1,
     marginLeft: 20,
-    marginTop: 20
+    marginTop: 20,
+    borderBottomColor: baseColorWithOpacity(colors.grey, "30"),
+    borderBottomWidth: 1,
+    paddingBottom: 10
   },
   productName: {
     fontSize: 18,
