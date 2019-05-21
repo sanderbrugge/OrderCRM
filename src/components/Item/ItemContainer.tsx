@@ -27,7 +27,7 @@ const ItemContainer: React.FC<IProps> = ({ item }) => {
         </View>
         <View style={ItemStyles.orderInformation}>
           <Text style={ItemStyles.informationHeader}>TOTAL</Text>
-          <Text style={ItemStyles.informationDetail}>{item.total}</Text>
+          <Text style={ItemStyles.informationDetail}>${item.total}</Text>
         </View>
       </View>
     </View>
