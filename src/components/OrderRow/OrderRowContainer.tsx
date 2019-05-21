@@ -20,12 +20,14 @@ interface IProps extends NavigationInjectedProps<NavigationParams> {
  */
 const OrderRowContainer: React.FC<IProps> = ({ order, navigation }) => {
   const onSelect = React.useCallback(
-    () => navigation.navigate("OrderDetail", { order }),
+    () => navigation.navigate("OrderDetail", { id: order.id }),
     [order]
   );
+
   const [customer, setCustomer] = React.useState<Customer | undefined>(
     undefined
   );
+
   const customerName = React.useMemo(
     () => (customer ? customer.name : `Customer id: ${order["customer-id"]}`),
     [customer]

@@ -1,25 +1,18 @@
 import { fetchOrders } from "../api/Order/order.services";
 import { createAsyncAction } from "../util/async-redux";
-import { Order } from "../api/Order/order";
+import { Order, Item } from "../api/Order/order";
 import { Reducer } from "redux";
+import {
+  Action,
+  UNSENT,
+  PENDING,
+  SUCCESS,
+  FAILURE,
+  AsyncResource
+} from "./redux.types";
 
-export interface Action {
-  type: string;
-  payload: any;
-}
-
-export const UNSENT = "UNSENT";
-export const PENDING = "PENDING";
-export const SUCCESS = "SUCCESS";
-export const FAILURE = "FAILURE";
-
-export interface AsyncOrders {
+export interface AsyncOrders extends AsyncResource {
   data: Order[];
-  status: "UNSENT" | "PENDING" | "SUCCESS" | "FAILURE";
-  error?: {
-    status: number;
-    message: string;
-  };
 }
 
 const initialState: AsyncOrders = {
@@ -31,9 +24,18 @@ const initialState: AsyncOrders = {
 export const types = {
   FETCH_ORDER_REQUEST: "ORDER/FETCH_ORDER_REQUEST",
   FETCH_ORDER_SUCCESS: "ORDER/FETCH_ORDER_SUCCESS",
-  FETCH_ORDER_FAILURE: "ORDER/FETCH_ORDER_FAILURE"
+  FETCH_ORDER_FAILURE: "ORDER/FETCH_ORDER_FAILURE",
+
+  ADD_PRODUCT_TO_ORDER: "ORDER/ADD_PRODUCT_TO_ORDER"
 };
 
+/**
+ * In a larger application I'd use Immer to handle the immutability changes
+ * In a small app like this, it was fine without but it does produce uglier reducers like "ADD_PRODUCT_TO_ORDER"
+ *
+ * @param state the current redux state
+ * @param action the action to perform
+ */
 const orderReducer: Reducer<AsyncOrders, any> = (
   state = initialState,
   action: Action
@@ -60,6 +62,55 @@ const orderReducer: Reducer<AsyncOrders, any> = (
         error: action.payload
       };
     }
+    case types.ADD_PRODUCT_TO_ORDER: {
+      const newState = {
+        ...state,
+        data: state.data.map(order => {
+          if (order.id === action.payload.orderId) {
+            const isItemInOrder = order.items.some(
+              item => item["product-id"] === action.payload.item["product-id"]
+            );
+
+            console.log(isItemInOrder);
+
+            if (!isItemInOrder) {
+              return {
+                ...order,
+                items: [...order.items, action.payload.item]
+              };
+            }
+
+            const items = order.items.map(item => {
+              if (item["product-id"] === action.payload.item["product-id"]) {
+                return {
+                  "product-id": action.payload.item["product-id"],
+                  quantity: (
+                    parseInt(item.quantity) +
+                    parseInt(action.payload.item.quantity)
+                  ).toString(10),
+                  "unit-price": action.payload.item["unit-price"],
+                  total: (
+                    parseFloat(item.total) +
+                    parseFloat(action.payload.item.total)
+                  ).toFixed(2)
+                };
+              }
+
+              return item;
+            });
+
+            return {
+              ...order,
+              items
+            };
+          }
+
+          return order;
+        })
+      };
+
+      return newState;
+    }
     default:
       return state;
   }
@@ -72,7 +123,11 @@ export const actions = {
       requestType: types.FETCH_ORDER_REQUEST,
       successType: types.FETCH_ORDER_SUCCESS,
       failureType: types.FETCH_ORDER_FAILURE
-    })
+    }),
+  addProduct: (orderId: string, item: Item) => ({
+    type: types.ADD_PRODUCT_TO_ORDER,
+    payload: { orderId, item }
+  })
 };
 
 export default orderReducer;
