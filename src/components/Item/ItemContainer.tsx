@@ -36,7 +36,7 @@ const ItemContainer: React.FC<IProps> = ({ item }) => {
       <View style={ItemStyles.overviewContainer}>
         <ItemInformation title="QUANTITY" info={item.quantity} />
         <ItemInformation title="UNIT PRICE" info={item["unit-price"]} />
-        <ItemInformation title="TOTAL" info={item.total} />
+        <ItemInformation title="TOTAL" info={`$${item.total}`} />
       </View>
     </View>
   );

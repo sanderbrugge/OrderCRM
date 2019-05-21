@@ -29,6 +29,13 @@ export const types = {
   ADD_PRODUCT_TO_ORDER: "ORDER/ADD_PRODUCT_TO_ORDER"
 };
 
+/**
+ * In a larger application I'd use Immer to handle the immutability changes
+ * In a small app like this, it was fine without but it does produce uglier reducers like "ADD_PRODUCT_TO_ORDER"
+ *
+ * @param state the current redux state
+ * @param action the action to perform
+ */
 const orderReducer: Reducer<AsyncOrders, any> = (
   state = initialState,
   action: Action
@@ -56,14 +63,45 @@ const orderReducer: Reducer<AsyncOrders, any> = (
       };
     }
     case types.ADD_PRODUCT_TO_ORDER: {
-      console.log(action.payload.product);
       const newState = {
         ...state,
         data: state.data.map(order => {
           if (order.id === action.payload.orderId) {
+            const isItemInOrder = order.items.some(
+              item => item["product-id"] === action.payload.item["product-id"]
+            );
+
+            console.log(isItemInOrder);
+
+            if (!isItemInOrder) {
+              return {
+                ...order,
+                items: [...order.items, action.payload.item]
+              };
+            }
+
+            const items = order.items.map(item => {
+              if (item["product-id"] === action.payload.item["product-id"]) {
+                return {
+                  "product-id": action.payload.item["product-id"],
+                  quantity: (
+                    parseInt(item.quantity) +
+                    parseInt(action.payload.item.quantity)
+                  ).toString(10),
+                  "unit-price": action.payload.item["unit-price"],
+                  total: (
+                    parseFloat(item.total) +
+                    parseFloat(action.payload.item.total)
+                  ).toFixed(2)
+                };
+              }
+
+              return item;
+            });
+
             return {
               ...order,
-              items: [...order.items, action.payload.item]
+              items
             };
           }
 
