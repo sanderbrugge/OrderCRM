@@ -1,6 +1,6 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import Home from "./scenes/Home";
-import OrderDetail from "./scenes/OrderDetail/OrderDetail";
+import OrderDetail from "./scenes/OrderDetail";
 
 const AppNavigator = createStackNavigator(
   {

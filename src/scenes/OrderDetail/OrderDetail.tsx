@@ -6,6 +6,8 @@ import Header from "../../components/Header";
 import OrderButton from "../../components/OrderButton";
 import { Icons } from "react-native-fontawesome";
 import { colors } from "../../styles/base";
+import ItemContainer from "../../components/Item";
+import OrderDetailStyles from "./OrderDetail.styles";
 
 interface IProps extends NavigationInjectedProps<NavigationParams> {}
 
@@ -18,11 +20,16 @@ const OrderDetail: React.FC<IProps> = ({ navigation }) => {
         canNavigateBack
         childView={
           <>
-            <Text>{order.id}</Text>
+            <View style={OrderDetailStyles.itemContainer}>
+              <Text style={OrderDetailStyles.total}>TOTAL: ${order.total}</Text>
+            </View>
+            {order.items.map(item => (
+              <ItemContainer key={item["product-id"]} item={item} />
+            ))}
           </>
         }
       />
-      <View style={{ position: "absolute", bottom: 15, left: 20, right: 20 }}>
+      <View style={OrderDetailStyles.orderButtonContainer}>
         <OrderButton
           title="ORDER"
           icon={Icons.shoppingCart}
