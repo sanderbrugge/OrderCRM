@@ -22,31 +22,31 @@ const initialState: AsyncProducts = {
 };
 
 export const types = {
-  FETCH_ORDER_REQUEST: "ORDER/FETCH_ORDER_REQUEST",
-  FETCH_ORDER_SUCCESS: "ORDER/FETCH_ORDER_SUCCESS",
-  FETCH_ORDER_FAILURE: "ORDER/FETCH_ORDER_FAILURE"
+  FETCH_PRODUCT_REQUEST: "PRODUCT/FETCH_PRODUCT_REQUEST",
+  FETCH_PRODUCT_SUCCESS: "PRODUCT/FETCH_PRODUCT_SUCCESS",
+  FETCH_PRODUCT_FAILURE: "PRODUCT/FETCH_PRODUCT_FAILURE"
 };
 
-const orderReducer: Reducer<AsyncProducts, any> = (
+const productReducer: Reducer<AsyncProducts, any> = (
   state = initialState,
   action: Action
 ) => {
   switch (action.type) {
-    case types.FETCH_ORDER_REQUEST: {
+    case types.FETCH_PRODUCT_REQUEST: {
       return {
         data: [],
         status: PENDING,
         error: undefined
       };
     }
-    case types.FETCH_ORDER_SUCCESS: {
+    case types.FETCH_PRODUCT_SUCCESS: {
       return {
         data: action.payload,
         status: SUCCESS,
         error: undefined
       };
     }
-    case types.FETCH_ORDER_FAILURE: {
+    case types.FETCH_PRODUCT_FAILURE: {
       return {
         data: [],
         status: FAILURE,
@@ -59,13 +59,13 @@ const orderReducer: Reducer<AsyncProducts, any> = (
 };
 
 export const actions = {
-  fetchOrders: () =>
+  fetchProducts: () =>
     createAsyncAction({
       asyncRequest: () => fetchProducts(),
-      requestType: types.FETCH_ORDER_REQUEST,
-      successType: types.FETCH_ORDER_SUCCESS,
-      failureType: types.FETCH_ORDER_FAILURE
+      requestType: types.FETCH_PRODUCT_REQUEST,
+      successType: types.FETCH_PRODUCT_SUCCESS,
+      failureType: types.FETCH_PRODUCT_FAILURE
     })
 };
 
-export default orderReducer;
+export default productReducer;
