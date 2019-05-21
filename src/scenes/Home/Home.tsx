@@ -12,8 +12,8 @@ import {
   FAILURE
 } from "../../ducks/order.reducer";
 import { colors } from "../../styles/base";
-import OrderRow from "../../components/Order";
 import Error from "../../components/Error";
+import OrderRowContainer from "../../components/OrderRow";
 
 interface IHomeProps {
   orders: AsyncOrders;
@@ -36,7 +36,7 @@ const Home: React.FC<IHomeProps> = ({ orders, fetchOrders }) => {
       {hasData && (
         <FlatList
           data={orders.data}
-          renderItem={({ item }) => <OrderRow order={item} />}
+          renderItem={({ item }) => <OrderRowContainer order={item} />}
           keyExtractor={order => order.id}
         />
       )}
