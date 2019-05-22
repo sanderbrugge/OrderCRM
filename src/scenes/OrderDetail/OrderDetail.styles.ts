@@ -2,6 +2,9 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../styles/base";
 
 const OrderDetailStyles = StyleSheet.create({
+  container: {
+    marginBottom: 60
+  },
   itemContainer: {
     alignItems: "center",
     justifyContent: "center",

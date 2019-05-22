@@ -18,7 +18,7 @@ interface IProps {
  * @param param0 the order to display
  */
 const OrderDetail: React.FC<IProps> = ({ order, rbSheet }) => (
-  <>
+  <View style={OrderDetailStyles.container}>
     <View style={OrderDetailStyles.itemContainer}>
       <Text style={OrderDetailStyles.total}>
         TOTAL: {formatPrice(order.total)}
@@ -43,7 +43,7 @@ const OrderDetail: React.FC<IProps> = ({ order, rbSheet }) => (
     >
       <AddProduct orderId={order.id} />
     </RBSheet>
-  </>
+  </View>
 );
 
 export default OrderDetail;

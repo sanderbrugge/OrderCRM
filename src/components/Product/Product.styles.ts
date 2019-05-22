@@ -14,13 +14,13 @@ const ProductStyles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
     fontSize: 18,
-    fontWeight: "500",
-    fontStyle: "italic"
+    fontWeight: "500"
   },
   prodcutId: {
     fontSize: 16,
     fontWeight: "300",
-    color: colors.grey
+    color: colors.grey,
+    fontStyle: "italic"
   },
   buttonContainer: {
     flex: 1,
