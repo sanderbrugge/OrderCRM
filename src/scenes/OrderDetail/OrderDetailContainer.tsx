@@ -49,6 +49,7 @@ export const OrderDetailContainer: React.FC<IProps> = ({
   const [color, setColor] = React.useState<string>(colors.blue);
   const [icon, setIcon] = React.useState<string>(Icons.shoppingCart);
   const [title, setTitle] = React.useState<string>("ORDER");
+  const disabled = isOrdering || (order && order.items.length === 0);
 
   const submitOrder = async () => {
     setIsOrdering(true);
@@ -92,7 +93,7 @@ export const OrderDetailContainer: React.FC<IProps> = ({
       />
       <View style={OrderDetailStyles.orderButtonContainer}>
         <OrderButton
-          disabled={isOrdering}
+          disabled={disabled}
           title={title}
           icon={icon}
           color={color}

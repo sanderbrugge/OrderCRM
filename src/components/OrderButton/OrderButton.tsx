@@ -27,6 +27,7 @@ const OrderButton: React.FC<IProps> = ({
 
   return (
     <TouchableOpacity
+      disabled={disabled}
       onPress={onClick}
       style={[
         OrderButtonStyles.container,
