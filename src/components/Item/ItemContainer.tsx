@@ -5,6 +5,7 @@ import ItemStyles from "./Item.styles";
 import ItemInformation from "./ItemInformation";
 import { getProductById } from "../../api/Product/product.services";
 import { Product } from "../../api/Product/product";
+import { formatPrice } from "../../util/formatNumber";
 
 interface IProps {
   item: Item;
@@ -35,8 +36,11 @@ const ItemContainer: React.FC<IProps> = ({ item }) => {
       <Text style={ItemStyles.productId}>{item["product-id"]}</Text>
       <View style={ItemStyles.overviewContainer}>
         <ItemInformation title="QUANTITY" info={item.quantity} />
-        <ItemInformation title="UNIT PRICE" info={item["unit-price"]} />
-        <ItemInformation title="TOTAL" info={`$${item.total}`} />
+        <ItemInformation
+          title="UNIT PRICE"
+          info={formatPrice(item["unit-price"])}
+        />
+        <ItemInformation title="TOTAL" info={formatPrice(item.total)} />
       </View>
     </View>
   );

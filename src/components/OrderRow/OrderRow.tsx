@@ -3,6 +3,7 @@ import { Order } from "../../api/Order/order";
 import { TouchableOpacity, View, Text } from "react-native";
 import { OrderStyles } from "./Order.styles";
 import FontAwesome, { Icons } from "react-native-fontawesome";
+import { formatPrice, formatId } from "../../util/formatNumber";
 
 interface IProps {
   order: Order;
@@ -26,8 +27,10 @@ const OrderRow: React.FC<IProps> = ({ order, customerName, onSelect }) => (
       </View>
       <View style={OrderStyles.detailsContainer}>
         <Text style={OrderStyles.customerDetailText}>{customerName}</Text>
-        <Text style={OrderStyles.orderDetailText}>#{order.id}</Text>
-        <Text style={OrderStyles.detailTextPrice}>${order.total}</Text>
+        <Text style={OrderStyles.orderDetailText}>{formatId(order.id)}</Text>
+        <Text style={OrderStyles.detailTextPrice}>
+          {formatPrice(order.total)}
+        </Text>
       </View>
     </View>
   </TouchableOpacity>

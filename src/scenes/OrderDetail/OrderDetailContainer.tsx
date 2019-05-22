@@ -19,7 +19,7 @@ interface IProps extends NavigationInjectedProps<NavigationParams> {
 }
 
 /**
- * No need to use the API for this as all of the orders are available in redux.
+ * No need to use the API for this as all of the orders are available in Redux.
  *
  * @param orders all the orders available in the global state
  * @param id the ID to lookup
@@ -30,7 +30,7 @@ function getOrderById(orders: Order[], id: string) {
 
 /**
  *
- * @param param0 orders to find and the navigation object
+ * @param param0 All orders, to select by ID and display it's items and the navigation object.
  */
 const OrderDetailContainer: React.FC<IProps> = ({ orders, navigation }) => {
   const order = React.useMemo(

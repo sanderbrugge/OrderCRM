@@ -5,6 +5,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import AddProduct from "../AddProduct/AddProduct";
 import OrderDetailStyles from "./OrderDetail.styles";
 import { Order } from "../../api/Order/order";
+import { formatPrice } from "../../util/formatNumber";
 
 interface IProps {
   order: Order;
@@ -19,7 +20,9 @@ interface IProps {
 const OrderDetail: React.FC<IProps> = ({ order, rbSheet }) => (
   <>
     <View style={OrderDetailStyles.itemContainer}>
-      <Text style={OrderDetailStyles.total}>TOTAL: ${order.total}</Text>
+      <Text style={OrderDetailStyles.total}>
+        TOTAL: {formatPrice(order.total)}
+      </Text>
     </View>
 
     {order.items.map(item => (

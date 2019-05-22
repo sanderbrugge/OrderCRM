@@ -14,7 +14,8 @@ const ProductStyles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
     fontSize: 18,
-    fontWeight: "500"
+    fontWeight: "500",
+    fontStyle: "italic"
   },
   prodcutId: {
     fontSize: 16,

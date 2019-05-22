@@ -4,6 +4,7 @@ import { View, Text } from "react-native";
 import OrderButton from "../OrderButton";
 import ProductStyles from "./Product.styles";
 import { Item } from "../../api/Order/order";
+import { formatPrice } from "../../util/formatNumber";
 
 interface IProps {
   product: Product;
@@ -36,7 +37,7 @@ const ProductItem: React.FC<IProps> = ({ product, orderId, orderProduct }) => {
       </View>
       <View style={ProductStyles.buttonContainer}>
         <OrderButton
-          title={`$${product.price}`}
+          title={formatPrice(product.price)}
           onClick={onOrderProductClick}
         />
       </View>
