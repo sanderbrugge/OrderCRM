@@ -73,6 +73,10 @@ const orderReducer: Reducer<AsyncOrders, any> = (
             if (!isItemInOrder) {
               return {
                 ...order,
+                total: (
+                  parseFloat(order.total) +
+                  parseFloat(action.payload.item.total)
+                ).toFixed(2),
                 items: [...order.items, action.payload.item]
               };
             }
@@ -98,6 +102,9 @@ const orderReducer: Reducer<AsyncOrders, any> = (
 
             return {
               ...order,
+              total: (
+                parseFloat(order.total) + parseFloat(action.payload.item.total)
+              ).toFixed(2),
               items
             };
           }
