@@ -6,18 +6,26 @@ import ItemInformation from "./ItemInformation";
 import { getProductById } from "../../api/Product/product.services";
 import { Product } from "../../api/Product/product";
 import { formatPrice } from "../../util/formatNumber";
+import OrderButton from "../OrderButton";
+import { Icons } from "react-native-fontawesome";
+import { colors } from "../../styles/base";
 
 interface IProps {
   item: Item;
+  orderId: string;
+  removeProduct: (orderId: string, productId: string) => void;
 }
 
 /**
  * Overview of an item
  * @param param0 the item to display
  */
-const ItemContainer: React.FC<IProps> = ({ item }) => {
+const ItemContainer: React.FC<IProps> = ({ item, removeProduct, orderId }) => {
   const [product, setProduct] = React.useState<Product | undefined>(undefined);
   const productName = product ? product.description : item["product-id"];
+  const onRemoveProduct = React.useCallback(() => {
+    removeProduct(orderId, item["product-id"]);
+  }, [item, orderId, removeProduct]);
   React.useEffect(() => {
     const fetchProductData = async () => {
       try {
@@ -30,10 +38,22 @@ const ItemContainer: React.FC<IProps> = ({ item }) => {
     };
     fetchProductData();
   }, []);
+
   return (
     <View style={ItemStyles.container}>
-      <Text style={ItemStyles.productName}>{productName}</Text>
-      <Text style={ItemStyles.productId}>{item["product-id"]}</Text>
+      <View style={{ flex: 1, flexDirection: "row" }}>
+        <View style={{ flex: 4 }}>
+          <Text style={ItemStyles.productName}>{productName}</Text>
+          <Text style={ItemStyles.productId}>{item["product-id"]}</Text>
+        </View>
+        <View style={{ marginRight: 20 }}>
+          <OrderButton
+            icon={Icons.trash}
+            onClick={onRemoveProduct}
+            color={colors.red}
+          />
+        </View>
+      </View>
       <View style={ItemStyles.overviewContainer}>
         <ItemInformation title="QUANTITY" info={item.quantity} />
         <ItemInformation

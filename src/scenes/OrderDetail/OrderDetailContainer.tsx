@@ -14,9 +14,11 @@ import { AsyncOrders } from "../../ducks/order.reducer";
 import { Order } from "../../api/Order/order";
 import OrderDetail from "./OrderDetail";
 import { placeOrder } from "../../api/Order/order.services";
+import { actions as orderActions } from "../../ducks/order.reducer";
 
 interface IProps extends NavigationInjectedProps<NavigationParams> {
   orders: AsyncOrders;
+  removeProduct: (orderId: string, productId: string) => void;
 }
 
 /**
@@ -36,6 +38,7 @@ function getOrderById(orders: Order[], id: string) {
  */
 export const OrderDetailContainer: React.FC<IProps> = ({
   orders,
+  removeProduct,
   navigation
 }) => {
   const order = React.useMemo(
@@ -46,6 +49,7 @@ export const OrderDetailContainer: React.FC<IProps> = ({
   const [color, setColor] = React.useState<string>(colors.blue);
   const [icon, setIcon] = React.useState<string>(Icons.shoppingCart);
   const [title, setTitle] = React.useState<string>("ORDER");
+  const disabled = isOrdering || (order && order.items.length === 0);
 
   const submitOrder = async () => {
     setIsOrdering(true);
@@ -54,7 +58,6 @@ export const OrderDetailContainer: React.FC<IProps> = ({
       setColor(colors.green);
       setIcon(Icons.check);
       setTitle("PLACED");
-      console.log("order is placed");
     } catch (error) {
       console.log(error);
       setColor(colors.red);
@@ -80,11 +83,17 @@ export const OrderDetailContainer: React.FC<IProps> = ({
             onPress={() => rbSheet.current && rbSheet.current.open()}
           />
         }
-        childView={<OrderDetail order={order!} rbSheet={rbSheet} />}
+        childView={
+          <OrderDetail
+            order={order!}
+            rbSheet={rbSheet}
+            removeProduct={removeProduct}
+          />
+        }
       />
       <View style={OrderDetailStyles.orderButtonContainer}>
         <OrderButton
-          disabled={isOrdering}
+          disabled={disabled}
           title={title}
           icon={icon}
           color={color}
@@ -99,6 +108,10 @@ const mapStateToProps = (state: Store) => ({
   orders: state.orders
 });
 
+const mapDispatchToProps = (dispatch: any) => ({
+  removeProduct: (orderId: string, productId: string) =>
+    dispatch(orderActions.removeProduct(orderId, productId))
+});
 /**
  * I could've added al the orders in the react navigation param as a dependency,
  * which would exclude this component to connect to Redux.
@@ -107,5 +120,5 @@ const mapStateToProps = (state: Store) => ({
  */
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(OrderDetailContainer);

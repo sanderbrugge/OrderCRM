@@ -9,6 +9,7 @@ import { formatPrice } from "../../util/formatNumber";
 
 interface IProps {
   order: Order;
+  removeProduct: (orderId: string, productId: string) => void;
   rbSheet: React.MutableRefObject<RBSheet | null>;
 }
 
@@ -17,7 +18,7 @@ interface IProps {
  *
  * @param param0 the order to display
  */
-const OrderDetail: React.FC<IProps> = ({ order, rbSheet }) => (
+const OrderDetail: React.FC<IProps> = ({ order, rbSheet, removeProduct }) => (
   <View style={OrderDetailStyles.container}>
     <View style={OrderDetailStyles.itemContainer}>
       <Text style={OrderDetailStyles.total}>
@@ -26,7 +27,12 @@ const OrderDetail: React.FC<IProps> = ({ order, rbSheet }) => (
     </View>
 
     {order.items.map(item => (
-      <ItemContainer key={item["product-id"]} item={item} />
+      <ItemContainer
+        orderId={order.id}
+        key={item["product-id"]}
+        item={item}
+        removeProduct={removeProduct}
+      />
     ))}
 
     <RBSheet
