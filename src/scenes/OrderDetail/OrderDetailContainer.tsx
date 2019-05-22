@@ -54,7 +54,6 @@ export const OrderDetailContainer: React.FC<IProps> = ({
       setColor(colors.green);
       setIcon(Icons.check);
       setTitle("PLACED");
-      console.log("order is placed");
     } catch (error) {
       console.log(error);
       setColor(colors.red);

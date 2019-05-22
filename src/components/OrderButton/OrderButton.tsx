@@ -5,7 +5,7 @@ import FontAwesome from "react-native-fontawesome";
 import OrderButtonStyles from "./OrderButton.styles";
 
 interface IProps {
-  title: string;
+  title?: string;
   color?: string;
   icon?: string;
   disabled?: boolean;
@@ -38,7 +38,8 @@ const OrderButton: React.FC<IProps> = ({
       <Text style={OrderButtonStyles.buttonText}>
         {icon ? (
           <FontAwesome>
-            {icon} {title}
+            {icon}
+            {title ? ` ${title}` : null}
           </FontAwesome>
         ) : (
           <Text>{title}</Text>

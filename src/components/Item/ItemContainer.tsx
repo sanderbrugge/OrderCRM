@@ -6,6 +6,9 @@ import ItemInformation from "./ItemInformation";
 import { getProductById } from "../../api/Product/product.services";
 import { Product } from "../../api/Product/product";
 import { formatPrice } from "../../util/formatNumber";
+import OrderButton from "../OrderButton";
+import { Icons } from "react-native-fontawesome";
+import { colors } from "../../styles/base";
 
 interface IProps {
   item: Item;
@@ -32,8 +35,19 @@ const ItemContainer: React.FC<IProps> = ({ item }) => {
   }, []);
   return (
     <View style={ItemStyles.container}>
-      <Text style={ItemStyles.productName}>{productName}</Text>
-      <Text style={ItemStyles.productId}>{item["product-id"]}</Text>
+      <View style={{ flex: 1, flexDirection: "row" }}>
+        <View style={{ flex: 4 }}>
+          <Text style={ItemStyles.productName}>{productName}</Text>
+          <Text style={ItemStyles.productId}>{item["product-id"]}</Text>
+        </View>
+        <View style={{ marginRight: 20 }}>
+          <OrderButton
+            icon={Icons.trash}
+            onClick={() => console.log("removing")}
+            color={colors.red}
+          />
+        </View>
+      </View>
       <View style={ItemStyles.overviewContainer}>
         <ItemInformation title="QUANTITY" info={item.quantity} />
         <ItemInformation

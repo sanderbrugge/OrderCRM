@@ -26,7 +26,9 @@ export const types = {
   FETCH_ORDER_SUCCESS: "ORDER/FETCH_ORDER_SUCCESS",
   FETCH_ORDER_FAILURE: "ORDER/FETCH_ORDER_FAILURE",
 
-  ADD_PRODUCT_TO_ORDER: "ORDER/ADD_PRODUCT_TO_ORDER"
+  ADD_PRODUCT_TO_ORDER: "ORDER/ADD_PRODUCT_TO_ORDER",
+
+  REMOVE_PRODUCT_FROM_ORDER: "ORDER/REMOVE_PRODUCT_FROM_ORDER"
 };
 
 /**
@@ -113,6 +115,23 @@ const orderReducer: Reducer<AsyncOrders, any> = (
         })
       };
     }
+    case types.REMOVE_PRODUCT_FROM_ORDER: {
+      return {
+        ...state,
+        data: state.data.map(order => {
+          if (order.id === action.payload.orderId) {
+            return {
+              ...order,
+              items: order.items.filter(
+                item => item["product-id"] !== action.payload.productId
+              )
+            };
+          }
+
+          return order;
+        })
+      };
+    }
     default:
       return state;
   }
@@ -129,6 +148,10 @@ export const actions = {
   addProduct: (orderId: string, item: Item) => ({
     type: types.ADD_PRODUCT_TO_ORDER,
     payload: { orderId, item }
+  }),
+  removeProduct: (orderId: string, productId: string) => ({
+    type: types.REMOVE_PRODUCT_FROM_ORDER,
+    payload: { orderId, productId }
   })
 };
 
