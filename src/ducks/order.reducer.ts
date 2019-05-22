@@ -30,8 +30,8 @@ export const types = {
 };
 
 /**
- * In a larger application I'd use Immer to handle the immutability changes
- * In a small app like this, it was fine without but it does produce uglier reducers like "ADD_PRODUCT_TO_ORDER"
+ * In a larger application I'd use Immer to handle the immutability and state changess
+ * In a small app like this, it was fine without but it does produce "uglier" reducers like "ADD_PRODUCT_TO_ORDER"
  *
  * @param state the current redux state
  * @param action the action to perform
@@ -43,9 +43,8 @@ const orderReducer: Reducer<AsyncOrders, any> = (
   switch (action.type) {
     case types.FETCH_ORDER_REQUEST: {
       return {
-        data: [],
-        status: PENDING,
-        error: undefined
+        ...state,
+        status: PENDING
       };
     }
     case types.FETCH_ORDER_SUCCESS: {
@@ -63,7 +62,7 @@ const orderReducer: Reducer<AsyncOrders, any> = (
       };
     }
     case types.ADD_PRODUCT_TO_ORDER: {
-      const newState = {
+      return {
         ...state,
         data: state.data.map(order => {
           if (order.id === action.payload.orderId) {
@@ -106,8 +105,6 @@ const orderReducer: Reducer<AsyncOrders, any> = (
           return order;
         })
       };
-
-      return newState;
     }
     default:
       return state;
