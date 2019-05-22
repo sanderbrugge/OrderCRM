@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddProduct renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "margin": 10,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 18,
+        "fontWeight": "600",
+      }
+    }
+  >
+    Add Product
+  </Text>
+  <View
+    style={
+      Object {
+        "margin": 10,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`Home Component with orders renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#ffffff",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "customer-id": "2",
+          "id": "2",
+          "items": Array [
+            Object {
+              "product-id": "B102",
+              "quantity": "5",
+              "total": "24.95",
+              "unit-price": "4.99",
+            },
+          ],
+          "total": "24.95",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <orderRowContainer
+          order={
+            Object {
+              "customer-id": "2",
+              "id": "2",
+              "items": Array [
+                Object {
+                  "product-id": "B102",
+                  "quantity": "5",
+                  "total": "24.95",
+                  "unit-price": "4.99",
+                },
+              ],
+              "total": "24.95",
+            }
+          }
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`OrderDetail Component renders correctly 1`] = `
+Array [
+  <header
+    canNavigateBack={true}
+    childView={
+      <OrderDetail
+        rbSheet={
+          Object {
+            "current": null,
+          }
+        }
+      />
+    }
+    rightBarButton={
+      <HeaderBarButton
+        icon=""
+        onPress={[Function]}
+      />
+    }
+    title="Order Overview"
+  />,
+  <View
+    style={
+      Object {
+        "bottom": 15,
+        "left": 20,
+        "position": "absolute",
+        "right": 20,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#4169E1",
+          "borderRadius": 200,
+          "justifyContent": "center",
+          "margin": 5,
+          "opacity": 1,
+          "padding": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "#ffffff",
+            "fontSize": 16,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "color": undefined,
+              },
+              undefined,
+              Object {
+                "fontFamily": "FontAwesome5FreeSolid",
+              },
+            ]
+          }
+        >
+          
+           
+          ORDER
+        </Text>
+      </Text>
+    </View>
+  </View>,
+]
+`;

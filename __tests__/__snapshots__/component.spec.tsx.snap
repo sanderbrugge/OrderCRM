@@ -1,0 +1,488 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error Component renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#f5c300",
+      "borderColor": "#f5c300",
+      "borderRadius": 40,
+      "borderWidth": 2,
+      "flex": 1,
+      "flexDirection": "row",
+      "height": 40,
+      "margin": 10,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        Object {
+          "color": undefined,
+        },
+        Object {
+          "color": "#ffffff",
+          "fontSize": 20,
+          "marginLeft": 10,
+          "marginRight": 10,
+        },
+        Object {
+          "fontFamily": "FontAwesome5FreeSolid",
+        },
+      ]
+    }
+  >
+    
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#ffffff",
+        "fontSize": 18,
+      }
+    }
+  >
+    Test error
+  </Text>
+</View>
+`;
+
+exports[`ItemContainer renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "#a5a5a530",
+      "borderBottomWidth": 1,
+      "flex": 1,
+      "marginLeft": 20,
+      "marginTop": 20,
+      "paddingBottom": 10,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontSize": 18,
+        "fontWeight": "600",
+        "marginBottom": 2,
+      }
+    }
+  >
+    B102
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#a5a5a5",
+        "fontSize": 14,
+        "fontStyle": "italic",
+      }
+    }
+  >
+    B102
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "flex": 2,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginTop": 20,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#999999",
+            "fontSize": 14,
+          }
+        }
+      >
+        QUANTITY
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontWeight": "500",
+            "marginTop": 10,
+          }
+        }
+      >
+        10
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#999999",
+            "fontSize": 14,
+          }
+        }
+      >
+        UNIT PRICE
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontWeight": "500",
+            "marginTop": 10,
+          }
+        }
+      >
+        $ 4.99
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#999999",
+            "fontSize": 14,
+          }
+        }
+      >
+        TOTAL
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontWeight": "500",
+            "marginTop": 10,
+          }
+        }
+      >
+        $ 49.90
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`OrderButton Component renders correctly 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#FFF",
+      "borderRadius": 200,
+      "justifyContent": "center",
+      "margin": 5,
+      "opacity": 1,
+      "padding": 10,
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "alignItems": "center",
+        "color": "#ffffff",
+        "fontSize": 16,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "color": undefined,
+          },
+          undefined,
+          Object {
+            "fontFamily": "FontAwesome5FreeSolid",
+          },
+        ]
+      }
+    >
+      testicon
+       
+      testtitle
+    </Text>
+  </Text>
+</View>
+`;
+
+exports[`OrderRow Component renders correctly 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#a5a5a530",
+        "borderBottomWidth": 1,
+        "flex": 1,
+        "flexDirection": "row",
+        "marginBottom": 10,
+        "paddingBottom": 5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#a5a5a5",
+          "borderColor": "#a5a5a5",
+          "borderWidth": 1,
+          "height": 70,
+          "justifyContent": "center",
+          "margin": 5,
+          "width": 70,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "color": undefined,
+            },
+            Object {
+              "color": "#ffffff",
+              "fontSize": 30,
+            },
+            Object {
+              "fontFamily": "FontAwesome5FreeSolid",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#008000",
+            "borderRadius": 20,
+            "flex": 1,
+            "height": 20,
+            "justifyContent": "center",
+            "position": "absolute",
+            "right": 8,
+            "top": 12,
+            "width": 20,
+            "zIndex": 999,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#ffffff",
+            }
+          }
+        >
+          1
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "margin": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "flex": 1,
+            "fontSize": 18,
+            "fontWeight": "500",
+            "marginBottom": 5,
+          }
+        }
+      >
+        Customer id: 2
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#a5a5a5",
+            "flex": 1,
+            "fontSize": 14,
+            "fontWeight": "300",
+          }
+        }
+      >
+        # 2
+      </Text>
+      <Text
+        style={
+          Object {
+            "alignSelf": "flex-end",
+            "color": "#008000",
+            "flex": 1,
+            "fontSize": 15,
+            "fontWeight": "600",
+          }
+        }
+      >
+        $ 24.95
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`ProductItem renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "#a5a5a530",
+      "borderBottomWidth": 1,
+      "flex": 1,
+      "flexDirection": "row",
+      "height": 70,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 3,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 18,
+          "fontWeight": "500",
+          "marginBottom": 5,
+          "marginTop": 10,
+        }
+      }
+    >
+      Electric screwdriver
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#a5a5a5",
+          "fontSize": 16,
+          "fontStyle": "italic",
+          "fontWeight": "300",
+        }
+      }
+    >
+      A102
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#4169E1",
+          "borderRadius": 200,
+          "justifyContent": "center",
+          "margin": 5,
+          "opacity": 1,
+          "padding": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "#ffffff",
+            "fontSize": 16,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text>
+          $ 49.50
+        </Text>
+      </Text>
+    </View>
+  </View>
+</View>
+`;

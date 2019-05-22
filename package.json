@@ -36,10 +36,14 @@
     "jest": "4.8.0",
     "metro-react-native-babel-preset": "0.54.1",
     "react-test-renderer": "16.8.3",
+    "ts-jest": "^24.0.2",
     "typescript": "3.4.5"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|react-navigation|@react-navigation/.*))"
+    ]
   },
   "rnpm": {
     "assets": [

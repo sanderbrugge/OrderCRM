@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AppContainer from "./src/Routes";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
 import store from "./src/ducks";
 
 interface Props {}
