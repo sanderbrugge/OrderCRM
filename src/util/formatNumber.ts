@@ -4,8 +4,14 @@
  * @param price the price to format
  */
 export const formatPrice = (price: number | string) => {
-  const parsed = typeof price === "string" ? parseFloat(price) : price;
-  return `$ ${parsed.toFixed(2)}`;
+  if (typeof price === "number") {
+    return `$ ${price.toFixed(2)}`;
+  }
+
+  const parsed = parseFloat(price);
+  const displayPrice = isNaN(parsed) ? 0 : parsed;
+
+  return `$ ${displayPrice.toFixed(2)}`;
 };
 
 /**
