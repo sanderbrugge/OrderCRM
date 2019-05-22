@@ -13,6 +13,7 @@ import { Store } from "../../ducks";
 import { AsyncOrders } from "../../ducks/order.reducer";
 import { Order } from "../../api/Order/order";
 import OrderDetail from "./OrderDetail";
+import { placeOrder } from "../../api/Order/order.services";
 
 interface IProps extends NavigationInjectedProps<NavigationParams> {
   orders: AsyncOrders;
@@ -37,6 +38,31 @@ const OrderDetailContainer: React.FC<IProps> = ({ orders, navigation }) => {
     () => getOrderById(orders.data, navigation.getParam("id")),
     [orders, navigation]
   );
+  const [isOrdering, setIsOrdering] = React.useState<boolean>(false);
+  const [color, setColor] = React.useState<string>(colors.blue);
+  const [icon, setIcon] = React.useState<string>(Icons.shoppingCart);
+  const [title, setTitle] = React.useState<string>("ORDER");
+
+  const submitOrder = async () => {
+    setIsOrdering(true);
+    try {
+      await placeOrder(order!.id);
+      setColor(colors.green);
+      setIcon(Icons.check);
+      setTitle("PLACED");
+      console.log("order is placed");
+    } catch (error) {
+      console.log(error);
+      setColor(colors.red);
+      setIcon(Icons.times);
+      setTitle("ERROR");
+    } finally {
+      setIsOrdering(false);
+    }
+  };
+
+  const onPlaceOrder = React.useCallback(() => submitOrder(), [order]);
+
   const rbSheet = React.useRef<RBSheet | null>(null);
 
   return (
@@ -54,10 +80,11 @@ const OrderDetailContainer: React.FC<IProps> = ({ orders, navigation }) => {
       />
       <View style={OrderDetailStyles.orderButtonContainer}>
         <OrderButton
-          title="ORDER"
-          icon={Icons.shoppingCart}
-          color={colors.blue}
-          onClick={() => console.log("order placed")}
+          disabled={isOrdering}
+          title={title}
+          icon={icon}
+          color={color}
+          onClick={onPlaceOrder}
         />
       </View>
     </>
