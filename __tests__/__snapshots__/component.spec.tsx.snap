@@ -65,29 +65,106 @@ exports[`ItemContainer renders correctly 1`] = `
     }
   }
 >
-  <Text
+  <View
     style={
       Object {
-        "color": "#000000",
-        "fontSize": 18,
-        "fontWeight": "600",
-        "marginBottom": 2,
+        "flex": 1,
+        "flexDirection": "row",
       }
     }
   >
-    B102
-  </Text>
-  <Text
-    style={
-      Object {
-        "color": "#a5a5a5",
-        "fontSize": 14,
-        "fontStyle": "italic",
+    <View
+      style={
+        Object {
+          "flex": 4,
+        }
       }
-    }
-  >
-    B102
-  </Text>
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000000",
+            "fontSize": 18,
+            "fontWeight": "600",
+            "marginBottom": 2,
+          }
+        }
+      >
+        B102
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#a5a5a5",
+            "fontSize": 14,
+            "fontStyle": "italic",
+          }
+        }
+      >
+        B102
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "marginRight": 20,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#DC143C",
+            "borderRadius": 200,
+            "justifyContent": "center",
+            "margin": 5,
+            "opacity": 1,
+            "padding": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "alignItems": "center",
+              "color": "#ffffff",
+              "fontSize": 16,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                Object {
+                  "color": undefined,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "FontAwesome5FreeSolid",
+                },
+              ]
+            }
+          >
+            
+          </Text>
+        </Text>
+      </View>
+    </View>
+  </View>
   <View
     style={
       Object {
@@ -244,8 +321,7 @@ exports[`OrderButton Component renders correctly 1`] = `
       }
     >
       testicon
-       
-      testtitle
+       testtitle
     </Text>
   </Text>
 </View>
