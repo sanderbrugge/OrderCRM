@@ -14,9 +14,11 @@ import { AsyncOrders } from "../../ducks/order.reducer";
 import { Order } from "../../api/Order/order";
 import OrderDetail from "./OrderDetail";
 import { placeOrder } from "../../api/Order/order.services";
+import { actions as orderActions } from "../../ducks/order.reducer";
 
 interface IProps extends NavigationInjectedProps<NavigationParams> {
   orders: AsyncOrders;
+  removeProduct: (orderId: string, productId: string) => void;
 }
 
 /**
@@ -36,6 +38,7 @@ function getOrderById(orders: Order[], id: string) {
  */
 export const OrderDetailContainer: React.FC<IProps> = ({
   orders,
+  removeProduct,
   navigation
 }) => {
   const order = React.useMemo(
@@ -79,7 +82,13 @@ export const OrderDetailContainer: React.FC<IProps> = ({
             onPress={() => rbSheet.current && rbSheet.current.open()}
           />
         }
-        childView={<OrderDetail order={order!} rbSheet={rbSheet} />}
+        childView={
+          <OrderDetail
+            order={order!}
+            rbSheet={rbSheet}
+            removeProduct={removeProduct}
+          />
+        }
       />
       <View style={OrderDetailStyles.orderButtonContainer}>
         <OrderButton
@@ -98,6 +107,10 @@ const mapStateToProps = (state: Store) => ({
   orders: state.orders
 });
 
+const mapDispatchToProps = (dispatch: any) => ({
+  removeProduct: (orderId: string, productId: string) =>
+    dispatch(orderActions.removeProduct(orderId, productId))
+});
 /**
  * I could've added al the orders in the react navigation param as a dependency,
  * which would exclude this component to connect to Redux.
@@ -106,5 +119,5 @@ const mapStateToProps = (state: Store) => ({
  */
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(OrderDetailContainer);

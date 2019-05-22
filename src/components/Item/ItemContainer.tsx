@@ -12,15 +12,20 @@ import { colors } from "../../styles/base";
 
 interface IProps {
   item: Item;
+  orderId: string;
+  removeProduct: (orderId: string, productId: string) => void;
 }
 
 /**
  * Overview of an item
  * @param param0 the item to display
  */
-const ItemContainer: React.FC<IProps> = ({ item }) => {
+const ItemContainer: React.FC<IProps> = ({ item, removeProduct, orderId }) => {
   const [product, setProduct] = React.useState<Product | undefined>(undefined);
   const productName = product ? product.description : item["product-id"];
+  const onRemoveProduct = React.useCallback(() => {
+    removeProduct(orderId, item["product-id"]);
+  }, [item, orderId, removeProduct]);
   React.useEffect(() => {
     const fetchProductData = async () => {
       try {
@@ -33,6 +38,7 @@ const ItemContainer: React.FC<IProps> = ({ item }) => {
     };
     fetchProductData();
   }, []);
+
   return (
     <View style={ItemStyles.container}>
       <View style={{ flex: 1, flexDirection: "row" }}>
@@ -43,7 +49,7 @@ const ItemContainer: React.FC<IProps> = ({ item }) => {
         <View style={{ marginRight: 20 }}>
           <OrderButton
             icon={Icons.trash}
-            onClick={() => console.log("removing")}
+            onClick={onRemoveProduct}
             color={colors.red}
           />
         </View>

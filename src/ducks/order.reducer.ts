@@ -124,7 +124,16 @@ const orderReducer: Reducer<AsyncOrders, any> = (
               ...order,
               items: order.items.filter(
                 item => item["product-id"] !== action.payload.productId
-              )
+              ),
+              total: order.items.reduce((accum, item) => {
+                if (item["product-id"] !== action.payload.productId) {
+                  return (parseFloat(accum) + parseFloat(item.total)).toFixed(
+                    2
+                  );
+                }
+
+                return accum;
+              }, "0")
             };
           }
 
