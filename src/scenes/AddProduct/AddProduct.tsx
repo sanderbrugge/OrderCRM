@@ -12,6 +12,7 @@ import Error from "../../components/Error";
 import ProductItem from "../../components/Product";
 import { actions as orderActions } from "../../ducks/order.reducer";
 import { Item } from "../../api/Order/order";
+import AddProductStyles from "./AddProduct.styles";
 
 interface IProps {
   products: AsyncProducts;
@@ -36,9 +37,9 @@ const AddProduct: React.FC<IProps> = ({
   const hasData = products.status === SUCCESS && products.data;
   const error = products.status === FAILURE;
   return (
-    <View style={{ flex: 1, margin: 10 }}>
-      <Text style={{ fontSize: 18, fontWeight: "600" }}>Add Product</Text>
-      <View style={{ margin: 10 }}>
+    <View style={AddProductStyles.container}>
+      <Text style={AddProductStyles.header}>Add Product</Text>
+      <View style={AddProductStyles.bodyContainer}>
         {isFetching && <ActivityIndicator size="large" color={colors.grey} />}
 
         {hasData && (

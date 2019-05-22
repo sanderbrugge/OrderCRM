@@ -19,18 +19,8 @@ interface IProps extends NavigationInjectedProps<NavigationParams> {
  * @param param0 The order to display in this row.
  */
 const OrderRowContainer: React.FC<IProps> = ({ order, navigation }) => {
-  const onSelect = React.useCallback(
-    () => navigation.navigate("OrderDetail", { id: order.id }),
-    [order]
-  );
-
   const [customer, setCustomer] = React.useState<Customer | undefined>(
     undefined
-  );
-
-  const customerName = React.useMemo(
-    () => (customer ? customer.name : `Customer id: ${order["customer-id"]}`),
-    [customer]
   );
 
   // Decided against putting this in Redux as this is not something that needs to be globally available.
@@ -48,6 +38,15 @@ const OrderRowContainer: React.FC<IProps> = ({ order, navigation }) => {
 
     fetchUserData();
   }, []);
+
+  const onSelect = React.useCallback(
+    () => navigation.navigate("OrderDetail", { id: order.id }),
+    [order]
+  );
+
+  const customerName = customer
+    ? customer.name
+    : `Customer id: ${order["customer-id"]}`;
 
   return (
     <OrderRow order={order} customerName={customerName} onSelect={onSelect} />

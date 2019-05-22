@@ -19,7 +19,8 @@ const ProductStyles = StyleSheet.create({
   prodcutId: {
     fontSize: 16,
     fontWeight: "300",
-    color: colors.grey
+    color: colors.grey,
+    fontStyle: "italic"
   },
   buttonContainer: {
     flex: 1,

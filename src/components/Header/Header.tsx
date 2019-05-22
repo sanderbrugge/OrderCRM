@@ -19,7 +19,6 @@ import FontAwesome, { Icons } from "react-native-fontawesome";
 
 const HEADER_MAX_HEIGHT = 90;
 const HEADER_MIN_HEIGHT = Platform.OS === "android" ? 50 : 80;
-const TITLE_MAX_HEIGHT = 50;
 const TITLE_MIN_HEIGHT = 40;
 
 interface IProps extends NavigationInjectedProps<NavigationParams> {
@@ -29,6 +28,13 @@ interface IProps extends NavigationInjectedProps<NavigationParams> {
   childView: React.ReactNode;
 }
 
+/**
+ * Custom large title header because react-navigation doesn't have this.
+ * I followed this playlist https://www.youtube.com/watch?v=LP6zmnMcHR0&list=PLy9JCsy2u97npFZ8wylvgHcfB36qkmGmN by Unsure Programmer
+ * and updated it to my own needs.
+ *
+ * @param param0 custom props needed for the header
+ */
 const Header: React.FC<IProps> = ({
   title,
   canNavigateBack,
@@ -40,12 +46,6 @@ const Header: React.FC<IProps> = ({
   const headerHeight = scrollY.interpolate({
     inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
     outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
-    extrapolate: "clamp"
-  });
-
-  const titleContainerTop = scrollY.interpolate({
-    inputRange: [0, TITLE_MAX_HEIGHT],
-    outputRange: [TITLE_MAX_HEIGHT, TITLE_MAX_HEIGHT + 5],
     extrapolate: "clamp"
   });
 
@@ -135,7 +135,7 @@ const Header: React.FC<IProps> = ({
           style={[
             HeaderStyles.contentTitleContainer,
             {
-              marginTop: titleContainerTop,
+              marginTop: 50,
               opacity: bottomTitleOpacity,
               flex: 1,
               flexDirection: "row"
