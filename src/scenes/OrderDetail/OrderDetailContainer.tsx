@@ -30,10 +30,14 @@ function getOrderById(orders: Order[], id: string) {
 }
 
 /**
+ * Also exported as named export to be able to test this component without the redux connection.
  *
  * @param param0 All orders, to select by ID and display it's items and the navigation object.
  */
-const OrderDetailContainer: React.FC<IProps> = ({ orders, navigation }) => {
+export const OrderDetailContainer: React.FC<IProps> = ({
+  orders,
+  navigation
+}) => {
   const order = React.useMemo(
     () => getOrderById(orders.data, navigation.getParam("id")),
     [orders, navigation]

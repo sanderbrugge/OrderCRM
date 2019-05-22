@@ -18,7 +18,11 @@ interface IHomeProps {
   fetchOrders: () => void;
 }
 
-const Home: React.FC<IHomeProps> = ({ orders, fetchOrders }) => {
+/**
+ * extra exported named export to include it in the tests without the redux connect HOC.
+ * @param param0 the orders to display and the fetchOrder call in case orders aren't present.
+ */
+export const Home: React.FC<IHomeProps> = ({ orders, fetchOrders }) => {
   React.useEffect(() => {
     fetchOrders();
   }, []);

@@ -21,7 +21,7 @@ interface IProps {
   fetchProducts: () => void;
 }
 
-const AddProduct: React.FC<IProps> = ({
+export const AddProduct: React.FC<IProps> = ({
   products,
   fetchProducts,
   orderId,
