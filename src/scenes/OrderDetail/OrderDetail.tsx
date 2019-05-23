@@ -7,6 +7,9 @@ import OrderDetailStyles from "./OrderDetail.styles";
 import { Order } from "../../api/Order/order";
 import { formatPrice } from "../../util/formatNumber";
 
+const SHEET_HEIGHT = 400;
+const SHEET_ANIMATION_DURATION = 250;
+
 interface IProps {
   order: Order;
   removeProduct: (orderId: string, productId: string) => void;
@@ -39,8 +42,8 @@ const OrderDetail: React.FC<IProps> = ({ order, rbSheet, removeProduct }) => (
       ref={ref => {
         rbSheet.current = ref;
       }}
-      height={400}
-      duration={250}
+      height={SHEET_HEIGHT}
+      duration={SHEET_ANIMATION_DURATION}
       customStyles={{
         container: {
           borderRadius: 20

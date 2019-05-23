@@ -26,6 +26,7 @@ const ItemContainer: React.FC<IProps> = ({ item, removeProduct, orderId }) => {
   const onRemoveProduct = React.useCallback(() => {
     removeProduct(orderId, item["product-id"]);
   }, [item, orderId, removeProduct]);
+
   React.useEffect(() => {
     const fetchProductData = async () => {
       try {
@@ -41,12 +42,12 @@ const ItemContainer: React.FC<IProps> = ({ item, removeProduct, orderId }) => {
 
   return (
     <View style={ItemStyles.container}>
-      <View style={{ flex: 1, flexDirection: "row" }}>
-        <View style={{ flex: 4 }}>
+      <View style={ItemStyles.productInfoContainer}>
+        <View style={ItemStyles.productInfoheaders}>
           <Text style={ItemStyles.productName}>{productName}</Text>
           <Text style={ItemStyles.productId}>{item["product-id"]}</Text>
         </View>
-        <View style={{ marginRight: 20 }}>
+        <View style={ItemStyles.productInfoDeleteButton}>
           <OrderButton
             icon={Icons.trash}
             onClick={onRemoveProduct}
