@@ -2,10 +2,16 @@
 
 React Native implementation of the Order-assignment.
 
+# Demo
+
+There is a demo video available [here](https://github.com/sanderbrugge/OrderCRM/blob/master/Teamleader_order_assignment.mov)
+
 # Launching simulators
 
 I implemented and tested the application mainly on iOS, on an iPhone X. That being said, it does work on Android so you can run it there too. I tested the final application on
 an Android Emulator, Google Pixel 2, on Android API 28.
+
+I would however suggest to test and run it on an iPhone X for the best experience.
 
 ## First time setup
 
@@ -60,7 +66,12 @@ $ yarn test
 
 # Extra info
 
-This project is implemented using TypeScript because I believe it helps to filter out bugs early on, gives us intellisense in the project which is super.
+## TypeScript
 
-So overall this decision speeds up the development process.
+This project is implemented using TypeScript because I believe it helps to filter out bugs early on, gives us intellisense in the project which is helpfull while developing.
+
 It also helps with the readability and maintainability of the code, and cross team development.
+
+## Github
+
+I used git and Github throughout my development process, as I would do it on a team or any other project. I left my feature/chore/bug-branches available. Normally these would be deleted after a code review and merge into develop/master.
