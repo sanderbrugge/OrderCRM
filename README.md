@@ -15,6 +15,8 @@ I used Yarn while developing, so there is a Yarn Lockfile available. Clone the p
 $ yarn install
 ```
 
+If the installation prompts you to chose a version of Jest, you can chose the most recent version `24.8.0`
+
 ## Launch the iOS simulator
 
 For iOS you need to have Xcode and an iOS simulator installed. Otherwise the script wont be able to launch a simulator.
