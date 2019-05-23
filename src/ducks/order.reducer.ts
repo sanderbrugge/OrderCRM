@@ -10,6 +10,7 @@ import {
   FAILURE,
   AsyncResource
 } from "./redux.types";
+import { calculateTotal, OPERATIONS } from "./util";
 
 export interface AsyncOrders extends AsyncResource {
   data: Order[];
@@ -75,10 +76,11 @@ const orderReducer: Reducer<AsyncOrders, any> = (
             if (!isItemInOrder) {
               return {
                 ...order,
-                total: (
-                  parseFloat(order.total) +
-                  parseFloat(action.payload.item.total)
-                ).toFixed(2),
+                total: calculateTotal(
+                  order.total,
+                  action.payload.item.total,
+                  OPERATIONS.ADD
+                ),
                 items: [...order.items, action.payload.item]
               };
             }
@@ -87,15 +89,17 @@ const orderReducer: Reducer<AsyncOrders, any> = (
               if (item["product-id"] === action.payload.item["product-id"]) {
                 return {
                   "product-id": action.payload.item["product-id"],
-                  quantity: (
-                    parseInt(item.quantity) +
-                    parseInt(action.payload.item.quantity)
-                  ).toString(10),
+                  quantity: calculateTotal(
+                    item.quantity,
+                    action.payload.item.quantity,
+                    OPERATIONS.ADD
+                  ),
                   "unit-price": action.payload.item["unit-price"],
-                  total: (
-                    parseFloat(item.total) +
-                    parseFloat(action.payload.item.total)
-                  ).toFixed(2)
+                  total: calculateTotal(
+                    item.total,
+                    action.payload.item.total,
+                    OPERATIONS.ADD
+                  )
                 };
               }
 
@@ -104,9 +108,11 @@ const orderReducer: Reducer<AsyncOrders, any> = (
 
             return {
               ...order,
-              total: (
-                parseFloat(order.total) + parseFloat(action.payload.item.total)
-              ).toFixed(2),
+              total: calculateTotal(
+                order.total,
+                action.payload.item.total,
+                OPERATIONS.ADD
+              ),
               items
             };
           }
@@ -127,9 +133,7 @@ const orderReducer: Reducer<AsyncOrders, any> = (
               ),
               total: order.items.reduce((accum, item) => {
                 if (item["product-id"] !== action.payload.productId) {
-                  return (parseFloat(accum) + parseFloat(item.total)).toFixed(
-                    2
-                  );
+                  return calculateTotal(accum, item.total, OPERATIONS.ADD);
                 }
 
                 return accum;

@@ -10,6 +10,16 @@ const ItemStyles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingBottom: 10
   },
+  productInfoContainer: {
+    flex: 1,
+    flexDirection: "row"
+  },
+  productInfoheaders: {
+    flex: 4
+  },
+  productInfoDeleteButton: {
+    marginRight: 20
+  },
   productName: {
     fontSize: 18,
     color: colors.black,
